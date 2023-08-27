@@ -73,8 +73,6 @@ export default function StarRating({
 
 const Star = function ({ onRating, full, onHoverIn, onHoverOut, color, size }) {
   const starStyle = {
-    width: "48px",
-    height: "48px",
     display: "block",
     cursor: "pointer",
     transition: "all 0.3s",
