@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 import { useMovies } from "./useMovies";
 import { useLocalStorageState } from "./useLocalStorageState";
@@ -12,16 +12,15 @@ const KEY = "c31ea5b1";
 export default function App() {
   const [query, setQuery] = useState("");
   const [isSelectedId, setIsSelectedId] = useState(null);
-  const { movies, isLoading, error } = useMovies(query, handleCloseMovie);
   const [watched, setWatched] = useLocalStorageState([], "watched");
+  const handleCloseMovie = useCallback(() => {
+    setIsSelectedId(null);
+  }, []);
+  const { movies, isLoading, error } = useMovies(query, handleCloseMovie);
 
   const handleSelectMovie = function (id) {
     setIsSelectedId((selectedId) => (selectedId === id ? null : id));
   };
-
-  function handleCloseMovie() {
-    setIsSelectedId(null);
-  }
 
   const handleSetWatched = function (movie) {
     setWatched((watched) => [...watched, movie]);
