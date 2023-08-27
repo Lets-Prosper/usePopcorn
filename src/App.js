@@ -199,7 +199,6 @@ const MovieDetails = function ({
     Released: released,
     Actors: actors,
     Director: director,
-    Genre: genre,
   } = movie;
 
   const handleAdd = function () {
